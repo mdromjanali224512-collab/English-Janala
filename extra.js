@@ -35,7 +35,7 @@ buttons?.forEach(button=>{
   const showButton=document.createElement('div')
   showButton.innerHTML=`
     
-<button onclick="wordShow(${button.level_no})" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Lessons-${button.level_no}</button>
+<button id="acitivate${button.level_no}" onclick="wordShow(${button.level_no});activeFun(${button.level_no})" class="btn btn-outline btn-primary acitves"><i class="fa-solid fa-book-open"></i>Lessons-${button.level_no}</button>
            
   `;
   mainContainer.append(showButton)
@@ -138,9 +138,15 @@ fetch('https://openapi.programming-hero.com/api/words/all')
   const allWords=data.data
   const inputValue=allWords.filter(word=>word.word.toLowerCase().includes(input))
  displayWord(inputValue)
-
-  
-  
 })
   
+}
+// active btn
+const activeFun=(id)=>{
+ const selectallbtn=document.querySelectorAll('.acitves')
+ selectallbtn.forEach(btn=>btn.classList.remove('active'))
+   const activeBtn= document.getElementById(`acitivate${id}`)
+activeBtn?.classList.add('active')
+
+
 }
